@@ -14,10 +14,12 @@ function Module(name,dir,module) {
     this.module = module;
 }
 
+var validateTest, runTests;
+
 module.exports = {
     init: function() {
-        var validateTest = this.validateTest;
-        var runTests = this.runTests;
+        validateTest = this.validateTest;
+        runTests = this.runTests;
         // Load all the modules
         fs.readdir( p , function(err, contents){
             if (err) throw err;
@@ -54,18 +56,18 @@ module.exports = {
                 if(!err) {
                     console.log('All the modules have been loaded');
                     console.log(modules);
-                    validateTest(modules,runTests);
+                    validateTest(modules);
                 } else {
                     console.log('Module loading has failed');
                 }
             });
         });
     },
-    validateTest: function(modules,runTests) {
+    validateTest: function(modules) {
 
         async.each( modules , function( module, callback ) {
             console.log('Checking ' + module.dir + '/test.js');
-            fs.access( module.dir + '/test.js' , fs.R_OK | fs.W_OK, (err) => {
+            fs.access( module.dir + '/testing/test.js' , fs.R_OK | fs.W_OK, (err) => {
                 if (!err) {
                     console.log( module.name + ' contains test.js');
                     callback();
@@ -87,10 +89,9 @@ module.exports = {
         async.each( modules , function( module, callback ) {
             if( !$('#'+ module.name).length ) {
                 $('#testresult').append('<div id="'+module.name+'">testing...</div>');
-                var test = require(module.name + '/test.js');
-                test.test( $('#'+module.name) );
+                var test = require(module.name + '/testing/test.js');
+                callback(test.test( $('#'+module.name) ));
             }
-            callback();
         }, (err) => {
             if(!err) {
                 console.log('End of testing');
