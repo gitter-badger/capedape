@@ -26,7 +26,7 @@ module.exports = {
    * @param  {String}   encode   encoding type, default value = 'utf-8'
    * @param  {Function} callback callback function
    */
-  load: functon(path, filename, encode = 'utf-8', callback) {
+  load: function(path, filename, encode = 'utf-8', callback) {
     fs.readFile(path + filename, encode, function(err,data){
         callback(err,data);
     });

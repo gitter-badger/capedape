@@ -25,7 +25,7 @@ function setup() {
 // 
 var test = require('./testing/test.js');
 
-test.test();
+test.init();
 
 
 
