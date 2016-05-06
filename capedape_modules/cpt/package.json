@@ -1,0 +1,6 @@
+{
+    "name": "cpt",
+    "capedaped_module": "yes",
+    "main": "cpt.js",
+    "version": "0.1.0"
+}
