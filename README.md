@@ -8,3 +8,5 @@ It can
 2. Create/Remove/Modify Custom Post Type
  1. Also Metabox
 3. Can add Content Component Builder.
+
+> "It's so messy"
