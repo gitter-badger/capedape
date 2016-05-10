@@ -24,14 +24,18 @@ If you haven't used SASS, http://sass-lang.com/[http://sass-lang.com/] will be a
 1. Go to NWjs.io[http://nwjs.io/] and download SDK for your OS, you haven't already.
 
 2. package.json
->  "scripts": {
+
+    >  "scripts": {
     "start": "[/Path/To/Your/nw] . | sass --watch sass/main.scss:css/main.css"
   }
-My case, I'm running it on OS X.
-> "scripts": {
+
+    My case, I'm running it on OS X.
+
+    > "scripts": {
     "start": "~/desktop/nwjs-sdk-v0.14.3-osx-x64/nwjs.app/Contents/MacOS/nwjs . | sass --watch sass/main.scss:css/main.css"
   }
 
 3. Run via NPM and build.
-> $ npm start
+
+    > $ npm start
 
