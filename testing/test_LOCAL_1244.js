@@ -1,8 +1,4 @@
 var modules = [];
-//App Module Path for capedape module path
-require('app-module-path').addPath('./capedape_modules');
-
-
 var fs = nw.require('fs'),
     path = nw.require('path'),
     async = require('async'),
@@ -18,11 +14,7 @@ function Module(name,dir,module) {
     this.module = module;
 }
 
-<<<<<<< HEAD
 function validateTest(modules) {
-=======
-var validateTest = function(modules) {
->>>>>>> c44f36370ca3e796fa96a9dde5dbe0b1ae880d7b
 
         async.each( modules , function( module, callback ) {
             console.log('Checking ' + module.dir + '/test.js');
@@ -39,7 +31,6 @@ var validateTest = function(modules) {
                 console.log('test case has been checked');
                 runTests(modules);
             } else {
-<<<<<<< HEAD
                 $('#testresult').html(err);
                 console.log('--- Testing terminated ---');
             }
@@ -50,18 +41,6 @@ function runTests(modules) {
         async.each( modules , function( module, callback ) {
             if( !$('#'+ module.name).length ) {
                 $('#testresult').append('<div id="'+module.name+'">testing...</div>');
-=======
-                $('#module_result').html(err);
-                console.log('--- Testing terminated ---');
-            }
-        });
-    }
-
-var runTests = function(modules) {
-        async.each( modules , function( module, callback ) {
-            if( !$('#'+ module.name).length ) {
-                $('#module_result').append('<div id="'+module.name+'">testing...</div>');
->>>>>>> c44f36370ca3e796fa96a9dde5dbe0b1ae880d7b
                 var test = require(module.name + '/testing/test.js');
                 callback(test.test( $('#'+module.name) ));
             }
@@ -74,20 +53,12 @@ var runTests = function(modules) {
         });
 }
 
-<<<<<<< HEAD
 module.exports = {
     init: function() {
 
         var testWindow = nw.Window.open('testing.html',{id:'testWin'},function(new_win){
 
         });
-=======
-function ca_log( str ) {
-
-}
-
-var init = function() {
->>>>>>> c44f36370ca3e796fa96a9dde5dbe0b1ae880d7b
         // Load all the modules
         fs.readdir( p , function(err, contents){
             if (err) throw err;
@@ -130,11 +101,5 @@ var init = function() {
                 }
             });
         });
-<<<<<<< HEAD
     }
 }
-=======
-}
-
-init();
->>>>>>> c44f36370ca3e796fa96a9dde5dbe0b1ae880d7b
