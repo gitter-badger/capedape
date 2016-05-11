@@ -34,6 +34,7 @@
       item.done = !item.done
       return true
     }
+    this.mixin(OptsMixin)
   </script>
 
 </todo>

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CapedApe | v0.1</title>
+    <title>CapedApe</title>
+    <!-- make it sure to add the following line to avoid the endless horror of Uncaught SyntaxError: Unexpected token ILLEGAL -->
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <script>document.querySelector("html").className = "html--" + process.platform;</script>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <cpt></cpt>
     <sample></sample>
     <todo></todo>
     <cpt></cpt>
@@ -15,8 +16,8 @@
     <script type="riot/tag" src="tag/todo.tag"></script>
     <script type="riot/tag" src="tag/cpt.tag"></script>
     <!-- include riot.js -->
-    <script src="node_modules/riot/riot+compiler.min.js"></script>
-    <!-- mount the tag -->
-    <script src="src/app.js"></script>
+    <script src="node_modules/riot/riot%2Bcompiler.min.js"></script>
+    <!-- defer to wait till the page is loadded -->
+    <script src="src/app.js" defer></script>
 </body>
 </html>

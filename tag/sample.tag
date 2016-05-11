@@ -1,9 +1,10 @@
+
 <sample>
   <h3>{ message }</h3>
   <ul>
     <li each={ techs }>{ name }</li>
   </ul>
-
+  
   <script>
     this.message = 'Hello, Riot!'
     this.techs = [
@@ -11,6 +12,8 @@
       { name: 'JavaScript' },
       { name: 'CSS' }
     ]
+
+    this.mixin(OptsMixin)
   </script>
 
   <style scoped>
