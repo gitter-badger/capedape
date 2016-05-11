@@ -9,7 +9,8 @@
       </label>
     </li>
   </ul>
-
+  <h1>{window.clicked}</h1>
+  <button onclick={checkClicked}>Check</button>
   <form onsubmit={ add }>
     <input name="input" onkeyup={ edit }>
     <button disabled={ !text }>Add #{ items.length + 1 }</button>
@@ -33,6 +34,10 @@
       var item = e.item
       item.done = !item.done
       return true
+    }
+
+    checkClicked(e) {
+      window.clicked++
     }
     this.mixin(OptsMixin)
   </script>

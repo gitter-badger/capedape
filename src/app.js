@@ -29,6 +29,7 @@ var OptsMixin = {
  *
  * mixin and other stuff doesn't work 
  */
+var clicked = 0;
 riot.compile(function() {
   // here tags are compiled and riot.mount works synchronously
   var sample = riot.mount('sample')[0];
@@ -42,7 +43,6 @@ riot.compile(function() {
     ]
   })[0];
   var cpt = riot.mount('cpt')[0];
-  console.dir(sample);
   sample.testMixin();
 });
 
