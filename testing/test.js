@@ -1,4 +1,8 @@
 var modules = [];
+//App Module Path for capedape module path
+require('app-module-path').addPath('./capedape_modules');
+
+
 var fs = nw.require('fs'),
     path = nw.require('path'),
     async = require('async'),
@@ -14,12 +18,50 @@ function Module(name,dir,module) {
     this.module = module;
 }
 
-var validateTest, runTests;
+var validateTest = function(modules) {
 
-module.exports = {
-    init: function() {
-        validateTest = this.validateTest;
-        runTests = this.runTests;
+        async.each( modules , function( module, callback ) {
+            console.log('Checking ' + module.dir + '/test.js');
+            fs.access( module.dir + '/testing/test.js' , fs.R_OK | fs.W_OK, (err) => {
+                if (!err) {
+                    console.log( module.name + ' contains test.js');
+                    callback();
+                } else {
+                    callback('module:'+ module.name + ' does not have test.js');
+                }
+            });
+        }, (err) => {
+            if (!err) {
+                console.log('test case has been checked');
+                runTests(modules);
+            } else {
+                $('#module_result').html(err);
+                console.log('--- Testing terminated ---');
+            }
+        });
+    }
+
+var runTests = function(modules) {
+        async.each( modules , function( module, callback ) {
+            if( !$('#'+ module.name).length ) {
+                $('#module_result').append('<div id="'+module.name+'">testing...</div>');
+                var test = require(module.name + '/testing/test.js');
+                callback(test.test( $('#'+module.name) ));
+            }
+        }, (err) => {
+            if(!err) {
+                console.log('End of testing');
+            } else {
+                console.log(err);
+            }
+        });
+}
+
+function ca_log( str ) {
+
+}
+
+var init = function() {
         // Load all the modules
         fs.readdir( p , function(err, contents){
             if (err) throw err;
@@ -62,42 +104,6 @@ module.exports = {
                 }
             });
         });
-    },
-    validateTest: function(modules) {
-
-        async.each( modules , function( module, callback ) {
-            console.log('Checking ' + module.dir + '/test.js');
-            fs.access( module.dir + '/testing/test.js' , fs.R_OK | fs.W_OK, (err) => {
-                if (!err) {
-                    console.log( module.name + ' contains test.js');
-                    callback();
-                } else {
-                    callback('module:'+ module.name + ' does not have test.js');
-                }
-            });
-        }, (err) => {
-            if (!err) {
-                console.log('test case has been checked');
-                runTests(modules);
-            } else {
-                $('#testresult').html(err);
-                console.log('--- Testing terminated ---');
-            }
-        });
-    },
-    runTests: function(modules) {
-        async.each( modules , function( module, callback ) {
-            if( !$('#'+ module.name).length ) {
-                $('#testresult').append('<div id="'+module.name+'">testing...</div>');
-                var test = require(module.name + '/testing/test.js');
-                callback(test.test( $('#'+module.name) ));
-            }
-        }, (err) => {
-            if(!err) {
-                console.log('End of testing');
-            } else {
-                console.log(err);
-            }
-        });
-    }
 }
+
+init();
