@@ -17,8 +17,6 @@
 
   <script>
     this.items = opts.items
-    // fs = nw.require('fs')
-
 
     edit(e) {
       this.text = e.target.value
@@ -29,9 +27,6 @@
         this.items.push({ title: this.text })
         this.text = this.input.value = ''
       }
-      fs.readFile('package.json','utf-8',(err,data) => {
-        console.log(data)
-      })
     }
 
     toggle(e) {

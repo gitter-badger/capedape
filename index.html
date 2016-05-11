@@ -6,24 +6,17 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <!-- place the custom tag anywhere inside the body -->
+    <cpt></cpt>
     <sample></sample>
     <todo></todo>
+    <cpt></cpt>
     <!-- include the tag -->
     <script type="riot/tag" src="tag/sample.tag"></script>
     <script type="riot/tag" src="tag/todo.tag"></script>
+    <script type="riot/tag" src="tag/cpt.tag"></script>
     <!-- include riot.js -->
     <script src="node_modules/riot/riot+compiler.min.js"></script>
     <!-- mount the tag -->
-    <script>riot.mount('sample');
-    riot.mount('todo', {
-      title: 'I want to behave!',
-      items: [
-        { title: 'Avoid excessive caffeine', done: true },
-        { title: 'Hidden item',  hidden: true },
-        { title: 'Be less provocative'  },
-        { title: 'Be nice to people' }
-      ]
-    })</script>
+    <script src="src/app.js"></script>
 </body>
 </html>
