@@ -3,7 +3,7 @@
   "main": "index.html",
   "chromium-args": "--mixed-context",
   "scripts": {
-    "start": "~/desktop/nwjs-sdk-v0.14.3-osx-x64/nwjs.app/Contents/MacOS/nwjs . | sass --watch sass/main.scss:css/main.css"
+    "start": "~/desktop/nwjs-sdk-v0.14.4-osx-x64/nwjs.app/Contents/MacOS/nwjs . | sass --watch sass/main.scss:css/main.css"
   },
   "devDependencies": {
     "app-module-path": "^1.0.6",

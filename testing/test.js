@@ -14,12 +14,51 @@ function Module(name,dir,module) {
     this.module = module;
 }
 
-var validateTest, runTests;
+function validateTest(modules) {
+
+        async.each( modules , function( module, callback ) {
+            console.log('Checking ' + module.dir + '/test.js');
+            fs.access( module.dir + '/testing/test.js' , fs.R_OK | fs.W_OK, (err) => {
+                if (!err) {
+                    console.log( module.name + ' contains test.js');
+                    callback();
+                } else {
+                    callback('module:'+ module.name + ' does not have test.js');
+                }
+            });
+        }, (err) => {
+            if (!err) {
+                console.log('test case has been checked');
+                runTests(modules);
+            } else {
+                $('#testresult').html(err);
+                console.log('--- Testing terminated ---');
+            }
+        });
+}
+
+function runTests(modules) {
+        async.each( modules , function( module, callback ) {
+            if( !$('#'+ module.name).length ) {
+                $('#testresult').append('<div id="'+module.name+'">testing...</div>');
+                var test = require(module.name + '/testing/test.js');
+                callback(test.test( $('#'+module.name) ));
+            }
+        }, (err) => {
+            if(!err) {
+                console.log('End of testing');
+            } else {
+                console.log(err);
+            }
+        });
+}
 
 module.exports = {
     init: function() {
-        validateTest = this.validateTest;
-        runTests = this.runTests;
+
+        var testWindow = nw.Window.open('testing.html',{id:'testWin'},function(new_win){
+
+        });
         // Load all the modules
         fs.readdir( p , function(err, contents){
             if (err) throw err;
@@ -61,43 +100,6 @@ module.exports = {
                     console.log('Module loading has failed');
                 }
             });
-        });
-    },
-    validateTest: function(modules) {
-
-        async.each( modules , function( module, callback ) {
-            console.log('Checking ' + module.dir + '/test.js');
-            fs.access( module.dir + '/testing/test.js' , fs.R_OK | fs.W_OK, (err) => {
-                if (!err) {
-                    console.log( module.name + ' contains test.js');
-                    callback();
-                } else {
-                    callback('module:'+ module.name + ' does not have test.js');
-                }
-            });
-        }, (err) => {
-            if (!err) {
-                console.log('test case has been checked');
-                runTests(modules);
-            } else {
-                $('#testresult').html(err);
-                console.log('--- Testing terminated ---');
-            }
-        });
-    },
-    runTests: function(modules) {
-        async.each( modules , function( module, callback ) {
-            if( !$('#'+ module.name).length ) {
-                $('#testresult').append('<div id="'+module.name+'">testing...</div>');
-                var test = require(module.name + '/testing/test.js');
-                callback(test.test( $('#'+module.name) ));
-            }
-        }, (err) => {
-            if(!err) {
-                console.log('End of testing');
-            } else {
-                console.log(err);
-            }
         });
     }
 }
