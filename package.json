@@ -1,5 +1,5 @@
 {
-  "name": "capedape",
+  "name": "capedape2",
   "main": "index.html",
   "chromium-args": "--mixed-context",
   "scripts": {
