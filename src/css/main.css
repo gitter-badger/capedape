@@ -1,5 +1,12 @@
-menu#main-menu {
-  background-color: gray; }
+topmenu {
+  background: #ebcb6c;
+  background: -moz-linear-gradient(left, #ebcb6c 0%, #e73827 50%, #eb67ae 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, #ebcb6c), color-stop(50%, #e73827), color-stop(100%, #eb67ae));
+  background: -webkit-linear-gradient(left, #ebcb6c 0%, #e73827 50%, #eb67ae 100%);
+  background: -o-linear-gradient(left, #ebcb6c 0%, #e73827 50%, #eb67ae 100%);
+  background: -ms-linear-gradient(left, #ebcb6c 0%, #e73827 50%, #eb67ae 100%);
+  background: linear-gradient(to right, #ebcb6c 0%, #e73827 50%, #eb67ae 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebcb6c', endColorstr='#eb67ae', GradientType=1 ); }
 
 .hidden {
   display: none; }

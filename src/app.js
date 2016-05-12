@@ -32,18 +32,7 @@ var OptsMixin = {
 var clicked = 0;
 riot.compile(function() {
   // here tags are compiled and riot.mount works synchronously
-  var sample = riot.mount('sample')[0];
-  var todo = riot.mount('todo', {
-    title: 'I want to behave!',
-    items: [
-      { title: 'Avoid excessive caffeine', done: true },
-      { title: 'Hidden item',  hidden: true },
-      { title: 'Be less provocative'  },
-      { title: 'Be nice to people' }
-    ]
-  })[0];
-  var cpt = riot.mount('cpt')[0];
-  sample.testMixin();
+  // var sample = riot.mount('sample')[0];
 });
 
 
