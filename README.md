@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/whoiskjl/capedape.svg?branch=master)](https://travis-ci.org/whoiskjl/capedape)
+
 # CapedApe
 A simple GUI friend for your everyday Wordpress Theme creation workflow
 
